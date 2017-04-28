@@ -15,7 +15,8 @@ Backend:
 1. express
 2. dotenv && (touch .env file)
 3. mongoose
-4. socket-io
+4. cors
+5. socket-io
 
 Frontend:
 1. react
