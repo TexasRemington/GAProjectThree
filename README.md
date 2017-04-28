@@ -15,9 +15,17 @@ Backend:
 1. express
 2. dotenv && (touch .env file)
 3. mongoose
-4. socket-io
+4. cors
+5. socket-io
 
 Frontend:
 1. react
 2. bootstrap
-3. test
+
+
+
+# Run Program:
+1. cd backend && npm install
+2. PORT=5000 nodemon
+3. cd ../frontend/thumper && npm install
+4. npm start
