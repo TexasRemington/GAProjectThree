@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 mongoose.connect(process.env.PROJ_THREE_DB);
 var cors = require('cors');
+var serveIndex = require('serve-index');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
@@ -28,6 +29,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/playlist', serveIndex(__dirname + '/playlist'));
+app.use('/playlist', express.static(path.join(__dirname, 'playlist')));
 
 app.use('/', index);
 app.use('/users', users);

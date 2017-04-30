@@ -17,6 +17,7 @@ Backend:
 3. mongoose
 4. cors
 5. socket-io
+6. serve-index
 
 Frontend:
 1. react
