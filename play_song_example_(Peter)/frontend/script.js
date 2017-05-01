@@ -8,7 +8,7 @@ $(document).ready(function(){
 
     function loadSound() {
       var request = new XMLHttpRequest();
-      request.open("GET", "http://localhost:8000/music/brunoSong", true);
+      request.open("GET", "https://rocky-tor-16893.herokuapp.com/music/brunoSong", true);
       request.responseType = "arraybuffer";
 
       request.onload = function() {
