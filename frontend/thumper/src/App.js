@@ -1,21 +1,20 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { render } from 'react-dom';
+import Player from './components/Player';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
-}
+import store from './store'
+import { Provider } from 'react-redux'
+import clientSideEvents from './clientSideEvents'
 
-export default App;
+// import styles from './../scss/main.scss'
+
+const wrapper = document.querySelector('.page-wrapper')
+
+render(
+    <Provider store={store}>
+        <Player />
+    </Provider>,
+    wrapper
+)
+
+clientSideEvents()
