@@ -33,6 +33,7 @@ Frontend:
 10. react-socket-io
 11. react-redux
 
+
 # Run Program:
 1. cd backend && npm install
 2. PORT=5000 nodemon
