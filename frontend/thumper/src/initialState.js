@@ -10,3 +10,4 @@ const initialState = {
     playlistWindowVisible: false,
     tracklistWindowVisible: false,
 }
+export default initialState

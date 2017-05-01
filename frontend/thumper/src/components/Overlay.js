@@ -1,43 +1,44 @@
 // essentials
-import React from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 // actions
-import toggleTracklistWindow from '../actions/toggleTracklistWindow'
-import togglePlaylistWindow from '../actions/togglePlaylistWindow'
+import toggleTracklistWindow from '../container/toggleTracklistWindow'
+import togglePlaylistWindow from '../container/togglePlaylistWindow'
 
 
-const Overlay = React.createClass({
+class Overlay extends Component {
 
-    getInitialState() {
+    getInitialState = () => {
         return {
             el: null
         }
-    },
+    };
 
-    componentDidMount() {
+    componentDidMount = () => {
         const overlay = document.querySelector('.overlay')
         this.setState({ el: overlay })
-    },
+    };
 
 
-    toggle() {
+    toggle = () => {
         this.props.dispatch(togglePlaylistWindow(false))
         this.props.dispatch(toggleTracklistWindow(false))
 
         setTimeout(() => {
-            this.state.el.style.display = 'none'
+            this.setState.el.style.display = 'none'
         }, 500)
-    },
+    };
 
     render() {
+
 
         let cn
 
         if (this.props.pVisible || this.props.tVisible) {
             cn = `overlay visible`
             if (this.state.el) {
-              this.state.el.style.display = 'block'
+              this.setState.el.style.display = 'block'
             }
         } else {
             cn = `overlay`
@@ -49,13 +50,13 @@ const Overlay = React.createClass({
                 onClick={this.toggle}
                 >
             </div>
-        )
+        );
     }
-})
+}
 
 const mapStateToProps = store => ({
     pVisible: store.playlistWindowVisible,
     tVisible: store.tracklistWindowVisible
-})
+});
 
 export default connect(mapStateToProps)(Overlay)

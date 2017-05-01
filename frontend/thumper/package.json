@@ -8,9 +8,12 @@
     "classnames": "^2.2.5",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
+    "react-icons": "^2.2.3",
     "react-redux": "^5.0.4",
     "react-socket-io": "^0.2.4",
     "react-sound": "^0.5.2",
+    "redux": "^3.6.0",
+    "socket.io": "^1.7.3",
     "socket.io-client": "^1.7.3",
     "socket.io-stream": "^0.9.1"
   },

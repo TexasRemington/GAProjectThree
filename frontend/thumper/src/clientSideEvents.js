@@ -15,7 +15,7 @@ const junkPlaylists = ["Music","Videos","Films","Home Videos","TV Programmes","P
 
 const clientSideEvents = () => {
 
-    const socket = io()
+    const socket = io('http://localhost:5000/playlist/')
 
     socket.on('connect', () => {
 

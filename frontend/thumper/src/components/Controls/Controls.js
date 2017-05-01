@@ -1,8 +1,5 @@
-// essentials
-import React from 'react'
-
-// components
-import PlayPause from './PlayPause'
+import React from 'react';
+import PlayPause from './PlayPause';
 
 
 const Controls = () => (
