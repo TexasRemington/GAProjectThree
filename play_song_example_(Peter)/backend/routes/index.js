@@ -11,52 +11,105 @@ var cors = require('cors');
 app.use(cors());
 
 
-  // app.use(express.static(__dirname + '/public'));
-  // var earworm = path.join(__dirname, 'testSong.mp3');
-  //
-  //
-  // app.use(express.static(__dirname + '/public'));
-  // var bruno = path.join(__dirname, 'brunoSong.mp3')
 
+app.get('/music/:songname', function(req, res){
+  var streamsong = req.params.songname;
+  res.set({'Content-Type': 'audio/mpeg'});
 
+  var readStream = fs.createReadStream(__dirname + '/songs/' + streamsong + '.mp3');
+  console.log(__dirname + '/songs/' + streamsong + '.mp3');
 
+  readStream.pipe(res);
 
-app.get('/music', function(req, res){
-
-  fs.unlinkSync(__dirname + '/returnSong/allSongs.mp3');
-  var dhh = fs.createWriteStream(__dirname + '/returnSong/allSongs.mp3');
-  var files = fs.readdirSync(__dirname + '/songs');
-  var songArray = [];
-
-  files.forEach(function (file) {
-    songArray.push(file);
-  });
-
-  function recursiveMerge(){
-    if (!songArray.length) {
-      dhh.end("Done");
-      res.set({'Content-Type': 'audio/mpeg'});
-      var readStream = fs.createReadStream(__dirname + '/returnSong/allSongs.mp3');
-      readStream.pipe(res);
-      return;
-    }
-
-    currentfile = __dirname + '/songs/' + songArray.shift();
-    stream = fs.createReadStream(currentfile);
-    stream.pipe(dhh, {end: false});
-
-    stream.on("end", function() {
-      console.log(currentfile + ' appended');
-      recursiveMerge();
+  var dataLength = 0;
+  readStream.on('data', function (chunk) {
+      dataLength += chunk.length;
+    })
+  readStream.on('end', function () {  // done
+      console.log('The length was:', dataLength);
     });
-  }
-  recursiveMerge();
-
-
 })
 
 app.listen(8000);
 module.exports = router;
+
+
+
+
+
+
+// readStream.on('finish',function(){
+//  console.log(streamsong + " has finished yo");
+// //   // res.json({'play': 'next song'});
+// // })
+//
+// readStream.on('end',function(){
+//  console.log(streamsong + " has ended yo");
+// //   // res.json({'play': 'next song'});
+// })
+
+
+
+
+
+
+
+
+//this WORKS to append two songs together! However I think I might want the architecture to be slightly different
+
+
+
+
+  //
+  // fs.unlinkSync(__dirname + '/returnSong/allSongs.mp3');
+  // var dhh = fs.createWriteStream(__dirname + '/returnSong/allSongs.mp3');
+  // var files = fs.readdirSync(__dirname + '/songs');
+  // var songArray = [];
+  //
+  // files.forEach(function (file) {
+  //   songArray.push(file);
+  // });
+  //
+  // function recursiveMerge(){
+  //   if (!songArray.length) {
+  //     dhh.end("Done");
+  //     res.set({'Content-Type': 'audio/mpeg'});
+  //     var readStream = fs.createReadStream(__dirname + '/returnSong/allSongs.mp3');
+  //     readStream.pipe(res);
+  //     return;
+  //   }
+  //
+  //   currentfile = __dirname + '/songs/' + songArray.shift();
+  //   stream = fs.createReadStream(currentfile);
+  //   stream.pipe(dhh, {end: false});
+  //
+  //   stream.on("end", function() {
+  //     console.log(currentfile + ' appended');
+  //     recursiveMerge();
+  //   });
+  // }
+  // recursiveMerge();
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+  //
+
+
+
+
+
+
+
+
+
+//2 Sections of Garbage - but keep as its good for reference
+
+
+
 
 
 // var song1 = through();
