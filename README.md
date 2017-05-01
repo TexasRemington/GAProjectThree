@@ -21,3 +21,10 @@ Backend:
 Frontend:
 1. react
 2. bootstrap
+
+
+# Run Program:
+1. cd backend && npm install
+2. PORT=5000 nodemon
+3. cd ../frontend/thumper && npm install
+4. npm start
