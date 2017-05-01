@@ -1,3 +1,12 @@
+
+import React from 'react';
+import { render } from 'react-dom';
+import Player from './components/Player';
+
+import store from './store'
+import { Provider } from 'react-redux'
+import clientSideEvents from './clientSideEvents'
+
 import React, { Component } from 'react';
 import Thumps from './components/Thumps';
 
@@ -27,6 +36,8 @@ class App extends Component {
     }
   }
 
+  const wrapper = document.querySelector('.page-wrapper')
+
   render() {
     return (
       <div className="App">
@@ -35,9 +46,14 @@ class App extends Component {
         <Thumps thumps={this.state.thumps} />
       {/*  -playlist- ?
         -station- ?*/}
+        <Provider store={store}>
+            <Player />
+        </Provider>,
+        wrapper
       </div>
     );
   }
 }
 
-export default App;
+
+clientSideEvents()
