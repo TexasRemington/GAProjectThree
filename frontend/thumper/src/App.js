@@ -1,14 +1,7 @@
-
-import React from 'react';
-import { render } from 'react-dom';
-import Player from './components/Player';
-
-import store from './store'
-import { Provider } from 'react-redux'
-import clientSideEvents from './clientSideEvents'
-
 import React, { Component } from 'react';
-import Thumps from './components/Thumps';
+import Stations from './components/Stations';
+import AddStations from './components/AddStations';
+
 
 import './App.css';
 
@@ -16,44 +9,48 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-      thumps: [
-        {
-          artist: 'Mac DeMarco',
-          title: 'Blue Boy',
-          genre: 'Indie Pop'
-        },
-        {
-          artist: 'Action Bronson',
-          title: 'Actin Crazy',
-          genre: 'Rap'
-        },
-        {
-          artist: 'Remmington',
-          title: 'Peter is a Platypus',
-          genre: 'Classical'
-        }
-      ]
+      stations: []
     }
   }
 
-  const wrapper = document.querySelector('.page-wrapper')
+  componentWillMount(){
+    this.setState({stations: [
+      {
+        owner: 'Remmington',
+        stationName: 'GA WDI-Hot-Tracks',
+        dateCreated: 'May 1, 2017'
+      },
+      {
+        owner: 'Jorge Cano',
+        stationName: 'Spring Mix Master 2017',
+        dateCreated: 'April 30th, 2017'
+      },
+      {
+        owner: 'Chris Jauregui',
+        stationName: 'Peter is a Platypus',
+        dateCreated: 'April 29th, 2017'
+      },
+      {
+        owner: 'Peter Weyand',
+        stationName: 'Hackers Hot Love Techno Trill',
+        dateCreated: 'April 27th, 2017'
+      }
+    ]});
+  }
 
   render() {
     return (
       <div className="App">
         Thumper App | Sync Your Squads Music!
 
-        <Thumps thumps={this.state.thumps} />
-      {/*  -playlist- ?
-        -station- ?*/}
-        <Provider store={store}>
-            <Player />
-        </Provider>,
-        wrapper
+        <Stations stations={this.state.stations} />
+
+        <AddStations />
+
+
       </div>
     );
   }
 }
 
-
-clientSideEvents()
+export default App;
