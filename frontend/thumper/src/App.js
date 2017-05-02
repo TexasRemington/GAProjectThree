@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Stations from './components/Stations';
 import AddStations from './components/AddStations';
 
-
+import Login from './components/Login';
 import Footer from './components/Footer';
 import Header from './components/Header';
 
@@ -56,16 +56,21 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-      <Header />
+
+        <Login />
+
+        <Header />
 
         <h1>Thumper | Sync Your Squad</h1>
-        <AddStations /><br />
-          <h3>Latest Stations</h3>
+        <AddStations />
+
+        <br />
+
+        <h3>Latest Stations</h3>
+
         <Stations stations={this.state.stations} />
 
         <Footer />
-
-
 
 
       </div>
