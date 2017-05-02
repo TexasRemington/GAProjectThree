@@ -3,6 +3,20 @@ import Stations from './components/Stations';
 import AddStations from './components/AddStations';
 
 
+// import Footer from './components/Footer';
+
+// /* React Router Code --> */
+// import {
+//   BrowserRouter as Router,
+//   Route
+// } from 'react-router-dom';
+//
+// import Navbar from './components/Navbar';
+// import Home from './components/Home';
+// import Profile from './components/Profile';
+// import Footer from './components/Footer';
+
+
 import './App.css';
 
 class App extends Component {
@@ -41,16 +55,37 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+
         Thumper App | Sync Your Squads Music!
+        <AddStations /><br />
 
         <Stations stations={this.state.stations} />
 
-        <AddStations />
+
 
 
       </div>
     );
   }
+  ////use when implementing react router
+  // render() {
+  //   return (
+  //     <Router>
+  //       <div className="App">
+  //         <Navbar
+  //           currentUser={ this.state.currentUser }
+  //           loginButtonClicked={ this.loginButtonClicked }
+  //           logoutButtonClicked={ this.logoutButtonClicked } />
+  //
+  //         <div className="container main">
+  //           <Route exact path="/" component={ () => <Home currentUser={ this.state.currentUser } /> } />
+  //           <Route path="/profile" component={ Profile }/>
+  //         </div>
+  //
+  //         <Footer />
+  //       </div>
+  //     </Router>
+
 }
 
 export default App;
