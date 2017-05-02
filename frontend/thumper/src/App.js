@@ -1,12 +1,8 @@
-import React from 'react';
-import { render } from 'react-dom';
-import Player from './components/Player';
-
-import store from './store'
-import { Provider } from 'react-redux'
-import clientSideEvents from './clientSideEvents'
-
 import React, { Component } from 'react';
+
+
+
+
 import Stations from './components/Stations';
 import AddStations from './components/AddStations';
 
@@ -81,10 +77,6 @@ class App extends Component {
         <Stations stations={this.state.stations} />
 
         <Footer />
-
-
-
-        <Thumps thumps={this.state.thumps} />
 
       </div>
     );
