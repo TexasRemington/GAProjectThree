@@ -29,6 +29,7 @@ app.get('/music/:songname', function(req, res){
       console.log('The length was:', dataLength);
     });
 })
+<<<<<<< HEAD
 // 
 // app.listen(8000);
 module.exports = app;
@@ -208,3 +209,7 @@ module.exports = app;
 //   cache.push(data);
 //   console.log('cache: ', cache);
 // });
+=======
+
+module.exports = app;
+>>>>>>> 96e05ead64452a6b776c15bd3d723968008b7e0f
