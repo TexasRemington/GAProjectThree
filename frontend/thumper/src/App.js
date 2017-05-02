@@ -28,8 +28,60 @@ class App extends Component {
   constructor(){
     super();
     this.state = {
-      stations: []
+      stations: [],
+      username: '',
+      password: ''
     }
+  }
+
+  handleLogIn(username, password){
+  {/*call to the backend and bcrypt goes here*/}
+    console.log('inside App. username: ', username, ' password: ', password);
+    this.setState({
+      username:username,
+      password:password
+    },  function() {
+        let newusername = this.state.username;
+        console.log(newusername);
+
+        axios.post('http://localhost:5000/profiles/login', {
+          username: this.state.username,
+          password: this.state.password
+        })
+        .then(function (response) {
+          console.log("response from axios App.js", response);
+          {/*need to redirect the page here*/}
+          {/*response options are passwordsmatch or passwordsdontmatch*/}
+        })
+        .catch(function (error) {
+          console.error("error from axios App.js", error);
+        });
+    });
+  }
+
+  handleSignUp(username, password){
+  {/*call to the backend and bcrypt goes here*/}
+    console.log('inside App. username: ', username, ' password: ', password);
+    this.setState({
+      username:username,
+      password:password
+    },  function() {
+        let newusername = this.state.username;
+        console.log(newusername);
+
+        axios.post('http://localhost:5000/profiles/signup', {
+          username: this.state.username,
+          password: this.state.password
+        })
+        .then(function (response) {
+          console.log("response from axios App.js", response);
+          {/*need to redirect the page here*/}
+          {/*response options are status reject or status 200 ok*/}
+        })
+        .catch(function (error) {
+          console.error("error from axios App.js", error);
+        });
+    });
   }
 
   componentWillMount(){
