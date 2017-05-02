@@ -23,6 +23,11 @@ console.log('sanity check3');
   //   console.log('res is: ', res);
   // })
 
+    function loadSound(stream) {
+      var request = new XMLHttpRequest();
+
+      request.open("GET", "https://rocky-tor-16893.herokuapp.com/music/brunoSong", true);
+
 
 
     var fileBuffer = [],
