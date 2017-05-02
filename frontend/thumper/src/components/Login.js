@@ -15,12 +15,7 @@ class Login extends Component {
 
           <h2>Sign Up / Login</h2>
 
-        {/*  <form action="loginSignUp">
-            <input type="text" name="firstname" value="">
-            <input type="text" name="lastname" value="">
-            <input type="submit" value="Submit">
-          </form>
-        */}
+
 
           <form>
             <label>
