@@ -81,4 +81,126 @@ router.delete('/',function(req,res,next){
 
 });
 
+//signup functionality below
+
+
+
+
+
+function postPass(hashedpass, sendusername, res){
+
+	console.log("POSTPASS");
+
+	console.log('hashedpass ', hashedpass);
+	console.log('sendusername ', sendusername);
+
+
+	var newProfileSchema = new profileSchema({
+    	password: hashedpass,
+    	username: sendusername,
+	});
+
+  newProfileSchema.save(function(err, post){
+    if(err){
+      res.status(500).send({
+        status: "Error",
+        error: err
+      });
+    }else{
+      res.status(200).json({
+        status: "ok",
+        post: post
+      });
+    }
+  });
+
+
+}
+
+
+
+
+
+
+router.post('/signup', function(req,res,next){
+
+	var foundmatch = false;
+	var loopcounter = 0;
+	var postslength = 0;
+
+	var promise = new Promise(function(resolve, reject){
+
+		profileSchema.find({}, function(err,posts){
+			postslength = posts.length;
+			posts.forEach(function(post){
+				loopcounter+=1;
+				if (post.username === req.body.username){
+					foundmatch = true;
+					reject(true);
+				}else if(loopcounter===postslength && foundmatch===false && loopcounter != 0){
+					resolve(true);
+				}
+			});
+		});
+
+
+	});
+
+
+	promise.then(function(resolve){
+		if(resolve){
+			bcryptaspromised.hash(req.body.password, saltRounds)
+				.then(function(hash,err){
+					postPass(hash, req.body.username, res);
+					//res.json({'result': 'resolve'});
+				});
+		}
+
+	}, function(reject){
+		if(reject){
+			res.json({'status':'reject'})
+		}
+	});
+
+});
+
+
+
+
+router.post('/login', function(req,res,next){
+	var username = req.body.username;
+	var password = req.body.password;
+	var redirectistrue = false;
+	var numbernomatches = 0;
+
+		profileSchema.find({}, function(err,posts){
+			postslength = posts.length;
+			posts.forEach(function(post){
+
+				//console.log("post ", post);
+				//console.log("req.body.username ", req.body.username, " req.body.password ", req.body.password);
+
+				if (post.username == req.body.username){
+					bcryptaspromised.compare(req.body.password, post.password)
+							.then(function(result){
+									res.json({'passwords': 'matched'});
+							})
+							.catch(bcryptaspromised.MISMATCH_ERROR, function(result){
+								  res.json({'goto':'passwordsdontmatch'});
+							});
+				}else{
+					numbernomatches += 1;
+				}
+
+			});
+
+			if (numbernomatches == postslength){
+				res.json({'goto':'passwordsdontmatch'});
+			}
+		});
+
+});
+
+
+
 module.exports = router;
