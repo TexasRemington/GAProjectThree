@@ -2,13 +2,15 @@ console.log('sanity check');
 
 $(document).ready(function(){
 
-  window.AudioContext = window.AudioContext||window.webkitAudioContext;
-    context = new AudioContext();
 
 
-    function loadSound() {
+    function loadSound(stream) {
       var request = new XMLHttpRequest();
+<<<<<<< HEAD
       request.open("GET", "https://rocky-tor-16893.herokuapp.com/music/brunoSong", true);
+=======
+      request.connect("GET", "http://localhost:5000/playlist/LaNegra.mp3", true);
+>>>>>>> 96b1a6a9f51369952576b04d9e6a22bbfb58c4cf
       request.responseType = "arraybuffer";
 
       request.onload = function() {
@@ -23,16 +25,18 @@ $(document).ready(function(){
       console.log('playback finished');
     }
 
-   function process(Data) {
-     source = context.createBufferSource(); // Create Sound Source
-     source.onended = onEnded;
-      context.decodeAudioData(Data, function(buffer){
-        source.buffer = buffer;
-        source.connect(context.destination);
-        source.start(context.currentTime);
-      })
+    function gotStream() {
+        window.AudioContext = window.AudioContext || window.webkitAudioContext;
+        var audioContext = new AudioContext();
+
+        // Create an AudioNode from the stream
+        var mediaStreamSource = audioContext.createMediaStreamSource(request);
+
+        // Connect it to destination to hear yourself
+        // or any other node for processing!
+        mediaStreamSource.connect(audioContext.destination);
     }
 
-
+    navigator.getUserMedia({audio:true}, gotStream, AudioContext);
 loadSound();
 });
