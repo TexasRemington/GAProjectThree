@@ -10,23 +10,16 @@
     "react-router": "^4.1.1",
     "react-icons": "^2.2.3",
     "react-redux": "^5.0.4",
-<<<<<<< HEAD
     "react-router": "^4.1.1",
     "react-scripts": "^0.9.5",
     "react-socket-io": "^0.2.4",
-=======
->>>>>>> 96e05ead64452a6b776c15bd3d723968008b7e0f
     "react-sound": "^0.5.2",
     "redux": "^3.6.0",
     "socket.io": "^1.7.3",
     "socket.io-client": "^1.7.3",
-<<<<<<< HEAD
     "socket.io-stream": "^0.9.1",
     "start": "^5.1.0"
-=======
-    "socket.io-stream": "^0.9.1"
 
->>>>>>> 96e05ead64452a6b776c15bd3d723968008b7e0f
   },
   "devDependencies": {
     "react-scripts": "0.9.5"
