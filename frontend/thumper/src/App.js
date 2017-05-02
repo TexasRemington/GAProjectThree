@@ -3,7 +3,8 @@ import Stations from './components/Stations';
 import AddStations from './components/AddStations';
 
 
-// import Footer from './components/Footer';
+import Footer from './components/Footer';
+import Header from './components/Header';
 
 // /* React Router Code --> */
 // import {
@@ -55,11 +56,14 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+      <Header />
 
-        Thumper App | Sync Your Squads Music!
+        <h1>Thumper | Sync Your Squad</h1>
         <AddStations /><br />
-
+          <h3>Latest Stations</h3>
         <Stations stations={this.state.stations} />
+
+        <Footer />
 
 
 
