@@ -73,8 +73,8 @@ class App extends Component {
         dateCreated: 'April 30th, 2017',
         songs: [{
           songId: '4502983',
-          title: 'Neutral Milk Hotel',
-          artist: 'Aeroplane Over The Sea',
+          title: 'Aeroplane Over The Sea',
+          artist: 'Neutral Milk Hotel',
           album: 'In the Aeroplane Over the Sea'
         }]
       },

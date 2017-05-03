@@ -6,7 +6,7 @@ class Login extends Component {
     return (
       <div className="row">
           <div className="starter-template">
-            <h1>Thumper Music App | Live Streaming with Friends</h1>
+            <h1>Thumper Music App  <br /> Live Streaming with Friends</h1>
             <br />
             <br />
             <p className="lead">Host your music in real time. Have everyone at your scene sync up!</p>
