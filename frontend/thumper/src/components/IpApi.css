@@ -1,0 +1,13 @@
+.googleMap{
+  height: 200px;
+  width: 200px;
+}
+.componentbox{
+  display:inline-block;
+  height: 20px;
+  width: auto;
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+  border-style: solid;
+}

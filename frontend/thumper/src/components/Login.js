@@ -1,4 +1,10 @@
 import React, { Component } from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Link
+} from 'react-router-dom';
 import './Login.css';
 
 class Login extends Component {
@@ -26,6 +32,44 @@ class Login extends Component {
 
 
   render() {
+
+
+    const XLoginRedirectx = () => {
+      console.log('inside login redirect const');
+      console.log('this state redirect', this.props.redirect);
+      if(this.props.redirect === "/StationsPage"){
+        // this.setState({
+        //   redirect: ''
+        // });
+        return(
+          // <Route path="/StationsPage" component={xStationsPagex}/>
+
+          // <Redirect to="/StationsPage" push />
+          <div></div>
+        )
+      }else if (this.props.redirect === 'loginfailed') {
+        // this.setState({
+        //   redirect: ''
+        // });
+        return(
+          <div><p>Your login password or username is incorrect!</p></div>
+        )
+      }else if (this.props.redirect === 'signupfailed'){
+        // this.setState({
+        //   redirect: ''
+        // });
+        return(
+          <div><p>Your signup username is already taken!</p></div>
+        )
+      }else{
+        return(
+          <div></div>
+        )
+      }
+      return(<div></div>)
+    }
+
+
     return (
       <div className="row">
           <div className="starter-template">
@@ -55,6 +99,9 @@ class Login extends Component {
             <input type="submit" value="Submit" onClick={(e)=>this.handleForm(e)}/>
             </label>
           </form>
+
+
+      <XLoginRedirectx/>
 
       </div>
     );

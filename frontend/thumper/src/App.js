@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
   Route,
+  Redirect,
   Link
 } from 'react-router-dom';
 import axios from 'axios';
@@ -12,6 +13,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import About from './components/About';
 import UnauthorizedStations from './components/UnauthorizedStations';
+import IpApi from './components/IpApi';
 
 // /* React Router Code --> */
 // import {
@@ -34,9 +36,19 @@ class App extends Component {
       stations: [],
       username: '',
       password: '',
-      authorized: false
+      authorized: false,
+      redirect: '',
+      ipaddress:'',
+      lat: '',
+      lon: '',
+      owner:'',
+      stationname: '',
+      station_id: ''
     }
+    this.redirect = '';
   }
+
+
 
   // Peters Function Code for Authorization?
  //  constructor(){
@@ -48,10 +60,69 @@ class App extends Component {
  //   }
  // }
  //
+
+
+handleAddStation(owner,stationname){
+  console.log('inside handle add station');
+  console.log('value of owner', owner);
+  console.log('value of stationname', stationname);
+  const self = this;
+  self.setState({
+    owner: owner,
+    stationname: stationname
+  });//, ()=>{
+
+      console.log('stationname after setting self ', stationname);
+
+
+        axios.get('http://ip-api.com/json')
+        .then((response) => {
+
+          self.setState({
+            ipaddress:response.data.query,
+            lat: response.data.lat,
+            lon: response.data.lon,
+            station_id: Date.now()
+          })
+
+
+          axios.post('http://localhost:5000/stations/addstation', {
+            stationname: stationname,
+            owner:self.state.owner,
+            password: self.state.password,
+            station_id: self.state.station_id,
+            lat: self.state.lat,
+            lon: self.state.lon
+          })
+          .then((response)=>{
+
+            axios.get('http://localhost:5000/stations')
+            .then((response)=>{
+              self.setState({
+                stations: response
+              });
+
+            })
+          })
+          .catch(function (error) {
+            console.error("error in handleAddStation", error);
+          });
+
+        })
+        .catch(function (error) {
+          console.error("error in handleAddStation", error);
+        });
+
+  //});
+}
+
+
+
+
  handleLogIn(username, password){
  {/*call to the backend and bcrypt goes here*/}
    var self = this;
-   console.log('inside login in App. username: ', username, ' password: ', password);
+  //  console.log('inside login in App. username: ', username, ' password: ', password);
    this.setState({
      username:username,
      password:password
@@ -66,14 +137,19 @@ class App extends Component {
          {/*need to redirect the page here*/}
          if (response.data==='passwordsmatch'){
            self.setState({
-             authorized: true
+             authorized: true,
+             redirect: "/StationsPage"
            });
+           self.redirect = "/StationsPage";
+          //  this.context.router.transitionTo('/StationsPage');
          }
 
          if (response.data==='passwordsdontmatch'){
            self.setState({
-             authorized: false
+             authorized: false,
+             redirect:'loginfailed'
            });
+           self.redirect = "loginfailed";
          }
 
          {/*response options are passwordsmatch or passwordsdontmatch*/}
@@ -86,7 +162,7 @@ class App extends Component {
 
  handleSignUp(username, password){
  {/*call to the backend and bcrypt goes here*/}
-   console.log('inside signup in App. username: ', username, ' password: ', password);
+  //  console.log('inside signup in App. username: ', username, ' password: ', password);
    var self = this;
    this.setState({
      username:username,
@@ -104,14 +180,20 @@ class App extends Component {
 
          if (response.data==='profileposted'){
            self.setState({
-             authorized: true
+             authorized: true,
+             redirect:'/StationsPage'
            });
+           self.redirect = "/StationsPage";
+          //  this.context.router.transitionTo('/StationsPage');
+
          }
 
          if (response.data==='500error'){
            self.setState({
-             authorized: false
+             authorized: false,
+             redirect:'signupfailed'
            });
+           self.redirect = "signupfailed";
          }
 
        })
@@ -122,82 +204,67 @@ class App extends Component {
  }
 
 
+  clearRedirect(){
+      this.setState({
+        redirect: '.'
+      });
+      // console.log('inside clearRedirect');
+      // console.log('value of redirect is now, ', this.state.redirect);
+  }
+
 
   componentWillMount(){
-    this.setState({stations: [
-      {
-        owner: 'Remmington',
-        stationName: 'GA WDI-Hot-Tracks',
-        dateCreated: 'May 1, 2017'
-      },
-      {
-        owner: 'Jorge Cano',
-        stationName: 'Spring Mix Master 2017',
-        dateCreated: 'April 30th, 2017'
-      },
-      {
-        owner: 'Chris Jauregui',
-        stationName: 'Peter is a Platypus',
-        dateCreated: 'April 29th, 2017'
-      },
-      {
-        owner: 'Peter Weyand',
-        stationName: 'Hackers Hot Love Techno Trill',
-        dateCreated: 'April 27th, 2017'
-      }
-    ]});
+    var self = this;
+    axios.get('http://localhost:5000/stations')
+    .then((response)=>{
+      self.setState({
+        stations: response
+      })
+    })
   }
-  //
-  // componentWillMount(){
-  //   this.setState({stationsongs: [
-  //     {
-  //       songId, '9823497',
-  //       title: 'Informer',
-  //       artist: 'Snow',
-  //       album: '12 Inches of Snow'
-  //     },
-  //     {
-  //       songId, '0982343',
-  //       title: 'Neutral Milk Hotel',
-  //       artist: 'Aeroplane Over The Sea',
-  //       album: 'In the Aeroplane Over the Sea'
-  //     },
-  //     {
-  //       songId, '1038592',
-  //       title: 'Daftendirekt',
-  //       artist: 'Daft Punk',
-  //       album: 'Homework'
-  //     },
-  //     {
-  //       songId, '2058239',
-  //       title: 'Ambitionz Az a Ridah',
-  //       artist: 'Tupac',
-  //       album: 'All Eyez on Me'
-  //     },
-  //     {
-  //       songId, '2398729',
-  //       title: 'Grown Up',
-  //       artist: 'Danny Brown',
-  //       album: 'Grown up'
-  //     },
-  //     {
-  //       songId, '2098300',
-  //       title: 'Fuck Up Some Commas',
-  //       artist: 'Future',
-  //       album: 'DS2'
-  //     },
-  //   ]});
-  // }
+
 
 
   render() {
+
+    const XLoginRedirectx = () => {
+      // console.log('inside login redirect const');
+      // console.log('this state redirect', this.state.redirect);
+      if(this.state.redirect === "/StationsPage"){
+        // this.setState({
+        //   redirect: ''
+        // });
+        return(
+          // <Route path="/StationsPage" component={xStationsPagex}/>
+          <Redirect to="/StationsPage" push />
+        )
+      }
+      return(<div></div>)
+    }
+
+    // const XLoginRedirectx = () => {
+    //   return(
+    //     <Redirect to='/StationsPage'/>
+    //   )
+    // }
+
+
+
+
+
+
+
+    // const xLoginRedirectx = () => (
+    //   <Route path="/" render={(props) => <ButtonToNavigate {...props} title="Navigate elsewhere" />} />
+    // )
 
     const xStationsPagex = () => {
       if (this.state.authorized === true){
         return(
           <div>
-           <AddStations />
-           <Stations stations={this.state.stations} />
+           <AddStations handleAddStation={this.handleAddStation.bind(this)} />
+           <Stations stations={this.state.stations}/>
+           <IpApi stations={this.state.stations}/>
            <Footer />
           </div>
         )
@@ -214,7 +281,7 @@ class App extends Component {
     const xAboutPagex =  ()=> {
       return(
         <div>
-          <About />
+          <About/>
           <Footer />
         </div>
       )
@@ -224,7 +291,9 @@ class App extends Component {
       return(
         <div>
           <Login  handleLogIn ={this.handleLogIn.bind(this)}
-                  handleSignUp={this.handleSignUp.bind(this)}/>
+                  handleSignUp={this.handleSignUp.bind(this)}
+                  redirect={this.state.redirect}
+                />
           <Footer />
         </div>
       )
@@ -273,7 +342,11 @@ class App extends Component {
       <Route path="/LoginPage" component={xLoginPagex}/>
       <Route path="/StationsPage" component={xStationsPagex}/>
 
+      <XLoginRedirectx />
+
       </div>
+
+
 
       </Router>
 
@@ -356,6 +429,11 @@ class App extends Component {
   //     </Router>
 
 }
+
+  //
+  // App.contextTypes = {
+  //   router: React.PropTypes.object
+  // };
 
 
 export default App;

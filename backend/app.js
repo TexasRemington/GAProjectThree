@@ -45,7 +45,7 @@ app.use('/', index);
 app.use('/users', users);
 
 // app.use('/music', music);
-//app.use('/stations', stations);
+app.use('/stations', stations);
 
 // app.use('/playlists', playlists);
 
