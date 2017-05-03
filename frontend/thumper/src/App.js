@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
-import Stations from './components/Stations';
-import Myplayer from './MediaPlayer/Myplayer.js';
+// import Stations from './components/Stations';
+// import Myplayer from './MediaPlayer/Myplayer.js';
 // import Sound from './MediaPlayer/Sound.js';
-import MediaPlayer2 from './MediaPlayer/MediaPlayer2.js';
 
 // import MediaPlayer from './MediaPlayer/MediaPlayer';
-
-// /* React Router Code --> */
+import Player from './components/Player';
+/* React Router Code --> */
 // import {
 //   BrowserRouter as Router,
 //   Route
 // } from 'react-router-dom';
-//s
+//
 // import Navbar from './components/Navbar';
 // import Home from './components/Home';
 // import Profile from './components/Profile';
@@ -58,10 +57,8 @@ class App extends Component {
     return (
       <div className="App">
         Thumper App | Sync Your Squads Music!
-  <MediaPlayer2 />
 
-        <Myplayer />
-
+            <Player />
 
       </div>
     );
