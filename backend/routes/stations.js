@@ -17,7 +17,6 @@ router.get('/:id',function(req,res,next){
 
     res.json(station);
   });
-});
 
   var newStation = new Station({
     stationName: req.body.name,
@@ -41,7 +40,10 @@ router.get('/:id',function(req,res,next){
     }
   });
 
-});
+  });
+
+
+
 
 /* Update a blog post */
 router.patch('/',function(req,res,next){
