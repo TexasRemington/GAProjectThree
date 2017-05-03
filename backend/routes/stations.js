@@ -17,7 +17,6 @@ router.get('/:id',function(req,res,next){
 
     res.json(station);
   });
-});
 
   var newStation = new Station({
     stationName: req.body.name,
@@ -41,7 +40,37 @@ router.get('/:id',function(req,res,next){
     }
   });
 
-});
+  });
+
+
+
+router.post('/addstation', function(req,res,next){
+  console.log('in addstation and the req.body.stationname is', req.body.stationname);
+  var newStation = new Station({
+    stationName:req.body.stationname,
+    owner:req.body.owner,
+    password: req.body.password,
+    station_id: req.body.station_id,
+    lat: req.body.lat,
+    lon: req.body.lon
+  });
+  newStation.save(function(err, station){
+    if(err){
+      res.status(500).send({
+        status: 'Error',
+        error: err
+      });
+    } else {
+      res.status(200).json({
+        status: 'OK',
+        station: station
+      });
+    }
+  });
+})
+
+
+
 
 /* Update a blog post */
 router.patch('/',function(req,res,next){

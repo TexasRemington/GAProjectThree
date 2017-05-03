@@ -44,7 +44,7 @@ app.use('/playlist', express.static(path.join(__dirname, 'playlist')));
 app.use('/', index);
 app.use('/users', users);
 
-app.use('/music', music);
+// app.use('/music', music);
 app.use('/stations', stations);
 
 // app.use('/playlists', playlists);

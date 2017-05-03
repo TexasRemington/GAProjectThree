@@ -30,7 +30,8 @@ io.on('connection', function(socket) {
     var filename2 = __dirname+'/playlist/'+data.name+'.mp3';
     console.log('filename in ss socket backend', filename2);
     var MyFileStream = fs.createReadStream(filename2);
-    MyFileStream.pipe(stream);
+    console.log('MyFileStream: ', MyFileStream);
+    // MyFileStream.pipe(stream);
     console.log('backend console stream', stream);
     ss(socket).emit('songStreaming', stream);
     // ss(socket).emit('songStreaming', function(){
