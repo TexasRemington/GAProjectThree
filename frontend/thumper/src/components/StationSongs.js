@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
 
 
+
 class StationSongs extends Component {
   render() {
+    const songs = this.props.songs.map(song => {
+      return (<li key={song.title} song={songs}>
+        <strong>{song.title} </strong>
+      </li>)
+    }
+  )
+
     return (
-      <div>
-        <h4>Station Name<h4>
-        <ol>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ol>
-      </div>
+      <ol>
+        {songs}
+      </ol>
     );
   }
 }
