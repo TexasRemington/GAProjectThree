@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
-import ListSongs from './ListSongs';
+import ListStations from './ListStations';
 
 class Stations extends Component {
   render() {
-    let listSongs;
+    let listStations;
     if(this.props.stations){
-      listSongs = this.props.stations.map(station => {
-        // console.log(station);
+      listStations = this.props.stations.map(station => {
+        console.log(station);
         return (
-          <ListSongs key={station.owner} station={station} />
+          <ListStations key={station.owner} station={station} />
         );
       });
     }
     return (
       <div className="Stations">
-        {listSongs}
+        {listStations}
       </div>
     );
   }

@@ -1,7 +1,21 @@
 import React, { Component } from 'react';
 import Stations from './components/Stations';
-import AddStations from './components/AddStations';
-import Droplist from '../components/Dropdown/Droplist.js';
+import Myplayer from './MediaPlayer/Myplayer.js';
+// import Sound from './MediaPlayer/Sound.js';
+import MediaPlayer2 from './MediaPlayer/MediaPlayer2.js';
+
+// import MediaPlayer from './MediaPlayer/MediaPlayer';
+
+// /* React Router Code --> */
+// import {
+//   BrowserRouter as Router,
+//   Route
+// } from 'react-router-dom';
+//s
+// import Navbar from './components/Navbar';
+// import Home from './components/Home';
+// import Profile from './components/Profile';
+// import Footer from './components/Footer';
 
 
 import './App.css';
@@ -39,14 +53,14 @@ class App extends Component {
     ]});
   }
 
+
   render() {
     return (
       <div className="App">
         Thumper App | Sync Your Squads Music!
+  <MediaPlayer2 />
 
-        <Stations stations={this.state.stations} />
-
-        <AddStations />
+        <Myplayer />
 
 
       </div>
@@ -54,4 +68,27 @@ class App extends Component {
   }
 }
 
+
+
+
+
 export default App;
+
+
+        //
+        //
+        //
+        // <Login />
+        //
+        // <Header />
+        //
+        // <h1>Thumper | Sync Your Squad</h1>
+        // <AddStations />
+        //
+        // <br />
+        //
+        // <h3>Latest Stations</h3>
+        //
+        // <Stations stations={this.state.stations} />
+        //
+        // <Footer />

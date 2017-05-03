@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 
-class ListSongs extends Component {
+class ListStations extends Component {
   render() {
     return (
       <li className="Stations">
@@ -11,4 +11,4 @@ class ListSongs extends Component {
   }
 }
 
-export default ListSongs;
+export default ListStations;
