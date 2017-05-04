@@ -9,7 +9,7 @@ class ListStations extends Component {
   }
 
   stationClick(e){
-    e.preventDefault;
+    e.preventDefault();
     var stationowner = this.props.station.owner;
     console.log(this.props.station, " has been clicked");
     this.props.handleStationClicked(this.props.station);

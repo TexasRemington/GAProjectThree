@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './AddStations.css';
 
 
 class UploadSongtoStation extends Component {
@@ -7,49 +8,86 @@ class UploadSongtoStation extends Component {
     super(props)
     this.state={
       stationclicked: this.props.stationclicked,
-      stationhasbeenclicked: this.props.stationhasbeenclicked
+      stationhasbeenclicked: this.props.stationhasbeenclicked,
+      owner: '',
+      stationname: '',
+      data_uri: null,
+      processing: false,
+      filename: null,
+      filetype: null,
+      musiclist: [],
+      processing: false
     };
   }
 
+  handleFile(e) {
+    const reader = new FileReader();
+    const file = e.target.files[0];
+
+    console.log('value of file in UploadSongtoStation', file);
+
+
+    reader.onload = (upload) => {
+      this.setState({
+        data_uri: upload.target.result,
+        filename: file.name,
+        filetype: file.type
+      });
+    };
+    reader.readAsDataURL(file);
+  }
+
+
+  handleForm(e){
+    e.preventDefault();
+    this.props.handleAddSong(this.state.data_uri,this.state.filename,this.state.filetype, this.state.stationclicked.station_id);
+  }
+
   render() {
-    //
-    // const Showinput = ()=>{
-    //
-    //   console.log('inside UploadSongtoStation');
-    //
-    //   console.log('inside UploadSongtoStation and value of stationclicked is ', this.props.stationclicked);
-    //
-    //   if (this.props.stationclicked){
-    //     return(
-    //       <div><p>You have clicked station {this.props.stationclicked.stationName} </p></div>
-    //     );
-    //   }else{
-    //     return(<div><h3>click a station to upload a song!</h3></div>);
-    //   }
-    // }
+
 
     console.log('stationhasbeenclicked in uploadSongtoStation',this.state.stationhasbeenclicked);
     console.log('stationclicked in uploadSongtoStation',this.state.stationclicked);
 
     const Stationclickedname = ()=>{
+
       if (this.state.stationhasbeenclicked===true){
-        return(<div><h3>{this.state.stationclicked.stationName}</h3></div>)
-      }else if (this.state.stationhasbeenclicked===false){
-        return(<div><h3>click on a station to upload songs!</h3></div>)
-      }else if (this.state.stationshasbeenclicked===null){
-        return(<div><h3>oh no</h3></div>)
+        //
+        // let processing;
+        // let uploaded;
+        //
+        // if (this.state.uploaded_uri) {
+        //   uploaded = (
+        //     <div>
+        //       <h4>File uploaded!</h4>
+        //     </div>
+        //   );
+        // }
+        //
+        // if (this.state.processing) {
+        //   processing = "Processing...";
+        // }
+
+        return(
+          <div>
+            <h3>Add songs to station {this.state.stationclicked.stationName}</h3>
+              <form>
+                <input className="fileInput" type="file" title="choose a cool song!" onChange={(e)=>{this.handleFile(e)}} />
+                <input className='btn btn-primary' type="submit" value="Upload" onClick={(e)=>{this.handleForm(e)}}/>
+              </form>
+          </div>
+        )
       } else {
-        return(<div><h3>dont know</h3></div>)
+        return(<div><h3>click on a station to upload a song!</h3></div>)
       }
     }
 
     return (
       <div>
-        <h2>Hello from UploadSongtoStation</h2>
+        <h2>Hello Sailor! Pick Your Poison :D</h2>
         <Stationclickedname/>
       </div>
     );
   }
 }
-
 export default UploadSongtoStation;
