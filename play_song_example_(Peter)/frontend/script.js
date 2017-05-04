@@ -6,11 +6,11 @@ $(document).ready(function(){
 
     function loadSound(stream) {
       var request = new XMLHttpRequest();
-<<<<<<< HEAD
+
       request.open("GET", "https://rocky-tor-16893.herokuapp.com/music/brunoSong", true);
-=======
+
       request.connect("GET", "http://localhost:5000/playlist/LaNegra.mp3", true);
->>>>>>> 96b1a6a9f51369952576b04d9e6a22bbfb58c4cf
+
       request.responseType = "arraybuffer";
 
       request.onload = function() {
