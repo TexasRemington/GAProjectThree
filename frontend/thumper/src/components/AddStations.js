@@ -3,22 +3,21 @@ import React, { Component } from 'react';
 class AddStations extends Component {
   render() {
     return (
-      <div>
-        <h3>Add Station</h3>
-        <form>
-          <div>
-            <label>Owner</label><br />
-            <input type="text" ref=""/>
+      <div className="row">
+          <div className="AddStations">
+            <form>
+              <label>
+                <h3>Add a Station</h3>
+                <h5><strong>Station Title:</strong></h5>
+                <input type="text" name="title" />
+                <h5><strong>Owner:</strong></h5>
+                <input type="text" name="owner" />
+                <br />
+                <br />
+                <input type="submit" value="Submit" />
+              </label>
+            </form>
           </div>
-          <div>
-            <label>Station Name</label><br />
-            <input type="text" ref=""/>
-          </div>
-          <div>
-            <label>Created Date</label><br />
-            <input type="text" ref=""/>
-          </div>
-        </form>
       </div>
     );
   }

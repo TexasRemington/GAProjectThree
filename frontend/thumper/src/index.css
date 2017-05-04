@@ -1,9 +1,54 @@
-body {
+
+
+
+
+
+/*body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
-}
+}*/
 
+
+.thump{
+  background-image: url("https://s-media-cache-ak0.pinimg.com/736x/f2/b1/c0/f2b1c072ecdd3a00b6ebe5ead9380b4b.jpg");
+    background-size: cover;
+
+
+}
+.section1 {
+/*display: inline-block;
+    max-width: 480px;
+    margin: 10px;
+    margin-top: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    text-align: left;
+    vertical-align: top;*/
+  }
+  .p{
+    font-family: 'Montserrat', sans-serif;
+
+        font-weight: 300;
+    font-size: 2em;
+    margin: 0.67em 0;
+    margin-top: 0.67em;
+    margin-right: 0px;
+    margin-bottom: 0.67em;
+    margin-left: 0px;
+  }
+
+.player{
+  padding-left: 300px;
+
+}
+.rplayer{
+  background-image: url("https://s-media-cache-ak0.pinimg.com/736x/f2/b1/c0/f2b1c072ecdd3a00b6ebe5ead9380b4b.jpg");
+z-index: 0;
+
+
+}
 h1 {
   color: rgba(175, 5, 20, .7);
 }

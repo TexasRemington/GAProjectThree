@@ -4,7 +4,8 @@ import lanegra from './LaNegra.mp3';
 
 module.exports = {
   station1: {
-    bottle: bottle,
+  songs: bottle,
     lanegra: lanegra
   }
+
 }
