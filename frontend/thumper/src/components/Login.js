@@ -22,7 +22,7 @@ class Login extends Component {
 
   handleForm(e){
     e.preventDefault();
-    console.log('inside handleform in login with username ', this.state.username, ' password ', this.state.password);
+    // console.log('inside handleform in login with username ', this.state.username, ' password ', this.state.password);
     if (this.state.type === 'login'){
       this.props.handleLogIn(this.state.username, this.state.password);
     } else if (this.state.type === 'signup'){
@@ -35,8 +35,8 @@ class Login extends Component {
 
 
     const XLoginRedirectx = () => {
-      console.log('inside login redirect const');
-      console.log('this state redirect', this.props.redirect);
+      // console.log('inside login redirect const');
+      // console.log('this state redirect', this.props.redirect);
       if(this.props.redirect === "/StationsPage"){
         // this.setState({
         //   redirect: ''

@@ -14,6 +14,7 @@ import Footer from './components/Footer';
 import About from './components/About';
 import UnauthorizedStations from './components/UnauthorizedStations';
 import IpApi from './components/IpApi';
+import UploadSongtoStation from './components/UploadSongtoStation';
 
 // /* React Router Code --> */
 // import {
@@ -43,7 +44,12 @@ class App extends Component {
       lon: '',
       owner:'',
       stationname: '',
-      station_id: ''
+      station_id: '',
+      data_uri: null,
+      filename:'',
+      filetype:'',
+      stationclicked: null,
+      stationhasbeenclicked:false
     }
     this.redirect = '';
   }
@@ -61,11 +67,29 @@ class App extends Component {
  // }
  //
 
+ handleStationClicked(stationobj){
+   console.log('inside handleStationClicked');
+   console.log('value of the station clicked is: ', stationobj);
+   this.setState({
+     stationclicked: stationobj,
+     stationhasbeenclicked: true
+   });
+   console.log('value of stationclicked from app handleStationClicked', this.state.stationclicked);
+ }
 
-handleAddStation(owner,stationname){
+
+handleAddStation(owner,stationname,data_uri,filename,filetype){
+
+
+ // this.state.data_uri, this.state.filename, this.state.filetype
+
+
   console.log('inside handle add station');
   console.log('value of owner', owner);
   console.log('value of stationname', stationname);
+  console.log('value of data_uri', data_uri);
+  console.log('value of filename', filename);
+  console.log('value of filetype', filetype);
   const self = this;
   self.setState({
     owner: owner,
@@ -264,7 +288,8 @@ handleAddStation(owner,stationname){
         return(
           <div>
            <AddStations handleAddStation={this.handleAddStation.bind(this)} />
-           <Stations stations={this.state.stations}/>
+           <Stations stations={this.state.stations} handleStationClicked={this.handleStationClicked.bind(this)}/>
+           <UploadSongtoStation stationhasbeenclicked={this.state.stationhasbeenclicked} stationclicked={this.state.stationclicked}/>
            <IpApi stations={this.state.stations}/>
            <Footer />
           </div>

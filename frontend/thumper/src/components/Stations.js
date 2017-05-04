@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import ListStations from './ListStations';
 
 class Stations extends Component {
-  constructor(props){
-    super(props);
-
-  }
+  // constructor(props){
+  //   super(props);
+  //   Stations:{
+  //
+  //   }
+  // }
 
 
 //
@@ -21,7 +23,7 @@ class Stations extends Component {
       listStations = this.props.stations.data.map(station => {
         // console.log(station);
         return (
-          <ListStations key={station._id} station={station} />
+          <ListStations key={station._id} station={station} handleStationClicked={this.props.handleStationClicked.bind(this)}/>
         );
       });
     }

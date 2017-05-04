@@ -71,7 +71,7 @@ ipApi(){
   var self = this;
   axios.get('http://ip-api.com/json')
   .then(function (response) {
-    console.log("response from axios App.js", response);
+    // console.log("response from axios App.js", response);
     self.setState({
       ipaddress:response.data.query,
       lat: response.data.lat,
@@ -91,7 +91,7 @@ render() {
   let mapmarker;
   if(this.props.stations){
     mapmarker = this.props.stations.data.map(station => {
-      console.log("station lat: ", station.lat, " station lon: ", station.lon, " stationName ", station.stationName);
+      // console.log("station lat: ", station.lat, " station lon: ", station.lon, " stationName ", station.stationName);
       return (
         <MapMarkerComponent lat={station.lat}
                             lng={station.lon}
