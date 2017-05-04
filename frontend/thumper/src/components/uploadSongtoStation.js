@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 
-class uploadSongtoStation.js extends Component {
+class UploadSongtoStation extends Component {
 
   constructor(props){
     super(props)
@@ -20,4 +20,4 @@ class uploadSongtoStation.js extends Component {
   }
 }
 
-export default uploadSongtoStation;
+export default UploadSongtoStation;

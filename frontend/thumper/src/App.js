@@ -16,16 +16,7 @@ import UnauthorizedStations from './components/UnauthorizedStations';
 import IpApi from './components/IpApi';
 import UploadSongtoStation from './components/UploadSongtoStation';
 
-// /* React Router Code --> */
-// import {
-//   BrowserRouter as Router,
-//   Route
-// } from 'react-router-dom';
-//
-// import Navbar from './components/Navbar';
-// import Home from './components/Home';
-// import Profile from './components/Profile';
-// import Footer from './components/Footer';
+
 
 
 import './App.css';
@@ -56,16 +47,7 @@ class App extends Component {
 
 
 
-  // Peters Function Code for Authorization?
- //  constructor(){
- //   super();
- //   this.state = {
- //     stations: [],
- //     username: '',
- //     password: ''
- //   }
- // }
- //
+
 
  handleStationClicked(stationobj){
    console.log('inside handleStationClicked');
@@ -381,85 +363,5 @@ handleAddStation(owner,stationname,data_uri,filename,filetype){
   }
 
 
-
-
-  // <div>
-  // <header>
-  //   <div className="row">
-  //     <div className="col-md-4">
-  //
-  //     <nav className="navbar navbar-inverse navbar-fixed-top">
-  //       <div className="container">
-  //         <div className="navbar-header">
-  //           <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-  //             <span className="sr-only">Toggle navigation</span>
-  //             <span className="icon-bar"></span>
-  //             <span className="icon-bar"></span>
-  //             <span className="icon-bar"></span>
-  //           </button>
-  //           <a className="navbar-brand" href="#">Thumper</a>
-  //         </div>
-  //         <div id="navbar" className="collapse navbar-collapse">
-  //           <ul className="nav navbar-nav">
-  //             <li className="active"><a href="#">Login</a></li>
-  //             <li><a href="#home">About</a></li>
-  //             <li><a href="#about">Profile</a></li>
-  //             <li><a href="#playlists">PlayList</a></li>
-  //           </ul>
-  //         </div>
-  //       </div>
-  //     </nav>
-  //
-  //     </div>
-  //   </div>
-  // </header>
-  // </div>
-
-
-
-  //
-  // <Login />
-  //
-  // <Header />
-  //
-  // <h1>Thumper | Sync Your Squad</h1>
-  // <AddStations />
-  //
-  // <br />
-  //
-  // <h3>Latest Stations</h3>
-  //
-  // <Stations stations={this.state.stations} />
-  //
-  // <Footer />
-
-
-
-  ////use when implementing react router
-  // render() {
-  //   return (
-  //     <Router>
-  //       <div className="App">
-  //         <Navbar
-  //           currentUser={ this.state.currentUser }
-  //           loginButtonClicked={ this.loginButtonClicked }
-  //           logoutButtonClicked={ this.logoutButtonClicked } />
-  //
-  //         <div className="container main">
-  //           <Route exact path="/" component={ () => <Home currentUser={ this.state.currentUser } /> } />
-  //           <Route path="/profile" component={ Profile }/>
-  //         </div>
-  //
-  //         <Footer />
-  //       </div>
-  //     </Router>
-
 }
-
-  //
-  // App.contextTypes = {
-  //   router: React.PropTypes.object
-  // };
-
-
 export default App;
