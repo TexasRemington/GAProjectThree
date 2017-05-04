@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Station = require('../models/station');
+var fs = require('fs');
 
 router.get('/', function(req,res){
   Station.find({}, function(err, stations){
@@ -41,6 +42,44 @@ router.get('/:id',function(req,res,next){
   });
 
   });
+
+
+
+  // stationName: { type: String, required: false },
+  // owner: { type: String, required: false },
+  // password: { type: String, required: false},
+  // dateCreated: {type: Date, default:Date.now()},
+  // station_id: { type: String, required: false},
+  // lat: { type: Number, required: false },
+  // lon: { type: Number, required: false},
+  // songidlist: { type : Array , "default" : [] }
+
+
+
+  router.post('/addmusic',function(req,res,next){
+    var file = "../socket/playlist/"+req.body.songid+'.'+req.body.filetype;
+    Station.findOne({station_id: req.body.stationid}, function(err,station){
+      if (err) console.log(err);
+      // data_uri:data_uri,
+      // filename:filetype,
+      // stationid:stationid
+      var obj = {};
+      obj["01"] = req.body.filename;
+      obj["02"] = req.body.songid;
+
+      station.songidlist.push(obj);
+      station.save(function(err,station){
+        if (err){
+          console.log(err);
+        }else{
+          fs.writeFile(req.body.data_uri, file, (err) => {
+            if (err) throw err;
+            console.log('The file has been saved!');
+          });
+       }
+      });
+    });
+  })
 
 
 

@@ -26,70 +26,17 @@ class AddStations extends Component {
          owner:'',
          stationname:''
        })
-
-
-      //  const _this = this;
-       //
-      //  this.setState({
-      //    processing: true
-      //  });
-       //
-      //  const promise = $.ajax({
-      //    url: '/api/v1/image',
-      //    type: "POST",
-      //    data: {
-      //      data_uri: this.state.data_uri,
-      //      filename: this.state.filename,
-      //      filetype: this.state.filetype
-      //    },
-      //    dataType: 'json'
-      //  });
-       //
-      //  promise.done(function(data){
-      //    _this.setState({
-      //      processing: false,
-      //      uploaded_uri: data.uri
-      //    });
-      //  });
      }
 
-    handleFile(e) {
-      const reader = new FileReader();
-      const file = e.target.files[0];
-
-      reader.onload = (upload) => {
-        this.setState({
-          data_uri: upload.target.result,
-          filename: file.name,
-          filetype: file.type
-        });
-      };
-
-      reader.readAsDataURL(file);
-    }
 
 
   render() {
 
-    let processing;
-    let uploaded;
-
-    if (this.state.uploaded_uri) {
-      uploaded = (
-        <div>
-          <h4>File uploaded!</h4>
-        </div>
-      );
-    }
-
-    if (this.state.processing) {
-      processing = "Processing...";
-    }
 
     return (
       <div>
         <h3>Add Station</h3>
-        <form onSubmit={(e)=>this.handleSubmit(e)}>
+        <form>
           <div>
             <label>Owner</label><br />
             <input type="text" ref="input1"
@@ -103,14 +50,9 @@ class AddStations extends Component {
             value={this.state.stationname}/>
           </div>
           <div>
-            <input className='fileInput' type="file" onChange={(e)=>this.handleFile(e)} />
-          </div>
-          <div>
-            <input disabled={this.state.processing} className='btn btn-primary' type="submit" value="Upload" onClick={(e)=>this.handleForm(e)}/>
-            {processing}
+            <input className='btn btn-primary' type="submit" value="Submit Station :P" onClick={(e)=>this.handleSubmit(e)}/>
           </div>
         </form>
-        {uploaded}
       </div>
     );
   }

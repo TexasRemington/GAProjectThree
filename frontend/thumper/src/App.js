@@ -9,12 +9,16 @@ import axios from 'axios';
 import Login from './components/Login';
 import AddStations from './components/AddStations';
 import Stations from './components/Stations';
-import Header from './components/Header';
+// import Header from './components/Header';
 import Footer from './components/Footer';
 import About from './components/About';
+// import AddSongs from './components/AddSongs';
 import UnauthorizedStations from './components/UnauthorizedStations';
 import IpApi from './components/IpApi';
 import UploadSongtoStation from './components/UploadSongtoStation';
+
+
+
 
 
 
@@ -60,7 +64,34 @@ class App extends Component {
  }
 
 
-handleAddStation(owner,stationname,data_uri,filename,filetype){
+
+handleAddSong(data_uri, filename, filetype, stationid){
+
+  console.log('value of data_uri', data_uri);
+  console.log('value of filename', filename);
+  console.log('value of filetype', filetype);
+
+  var songid = Date.now();
+
+  axios.post('http://localhost:5000/stations/addmusic', {
+    data_uri:data_uri,
+    filename:filename,
+    songid:songid,
+    filetype:filetype,
+    stationid:stationid
+  })
+  .then((response)=>{
+    console.log('music succesfully added to station');
+  })
+  .catch(function (error) {
+     console.error("error in handleAddStation", error);
+  });
+}
+
+
+
+
+handleAddStation(owner,stationname){
 
 
  // this.state.data_uri, this.state.filename, this.state.filetype
@@ -69,9 +100,9 @@ handleAddStation(owner,stationname,data_uri,filename,filetype){
   console.log('inside handle add station');
   console.log('value of owner', owner);
   console.log('value of stationname', stationname);
-  console.log('value of data_uri', data_uri);
-  console.log('value of filename', filename);
-  console.log('value of filetype', filetype);
+  // console.log('value of data_uri', data_uri);
+  // console.log('value of filename', filename);
+  // console.log('value of filetype', filetype);
   const self = this;
   self.setState({
     owner: owner,
@@ -271,7 +302,7 @@ handleAddStation(owner,stationname,data_uri,filename,filetype){
           <div>
            <AddStations handleAddStation={this.handleAddStation.bind(this)} />
            <Stations stations={this.state.stations} handleStationClicked={this.handleStationClicked.bind(this)}/>
-           <UploadSongtoStation stationhasbeenclicked={this.state.stationhasbeenclicked} stationclicked={this.state.stationclicked}/>
+           <UploadSongtoStation handleAddSong={this.handleAddSong.bind(this)} stationhasbeenclicked={this.state.stationhasbeenclicked} stationclicked={this.state.stationclicked}/>
            <IpApi stations={this.state.stations}/>
            <Footer />
           </div>

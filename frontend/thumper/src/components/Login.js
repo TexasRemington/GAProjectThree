@@ -86,19 +86,24 @@ class Login extends Component {
 
           <form>
             <label>
+            <select onChange={(e)=>this.setState({type: e.target.value})}>
+              <option value="login">Login</option>
+              <option value="signup">Signup</option>
+            <br />
+            </select>
             <h5><strong>Email:</strong></h5>
             <input type="text" name="name" onChange={(e)=>this.setState({username: e.target.value})}/>
             <h5><strong>Password:</strong></h5>
             <input type="text" name="password" onChange={(e)=>this.setState({password: e.target.value})}/>
-            <select onChange={(e)=>this.setState({type: e.target.value})}>
-              <option value="login">Login</option>
-              <option value="signup">Signup</option>
-            </select>
+
+
             <br />
             <br />
             <input type="submit" value="Submit" onClick={(e)=>this.handleForm(e)}/>
             </label>
           </form>
+
+
 
 
       <XLoginRedirectx/>
