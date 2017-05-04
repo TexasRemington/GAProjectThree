@@ -13,9 +13,14 @@ var serveIndex = require('serve-index');
 var index = require('./routes/index');
 var users = require('./routes/users');
 
+var music = require('./routes/music');
+var stations = require('./routes/stations');
+
+
 // var playlists = require('./routes/playlists');
 
 // var music = require('./routes/music');
+
 
 var profiles = require('./routes/profiles');
 
@@ -38,9 +43,14 @@ app.use('/playlist', express.static(path.join(__dirname, 'playlist')));
 
 app.use('/', index);
 app.use('/users', users);
+
+app.use('/music', music);
+app.use('/stations', stations);
+
 // app.use('/playlists', playlists);
 
 // app.use('/music', music);
+
 app.use('/profiles', profiles);
 
 // catch 404 and forward to error handler
